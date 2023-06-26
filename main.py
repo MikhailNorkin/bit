@@ -1,7 +1,7 @@
 import requests
-from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
+
 
 def shorten_link(token, long_url):
     headers = {
@@ -15,6 +15,7 @@ def shorten_link(token, long_url):
     response.raise_for_status()
     return response.json()['link']
 
+
 def count_clicks(token, link):
     headers = {
         'Authorization': 'Bearer {token}'.format(token=token)
@@ -24,6 +25,7 @@ def count_clicks(token, link):
     response.raise_for_status()
     return response.text
 
+
 def is_bitlink(token,url):
     headers = {
         'Authorization': 'Bearer {token}'.format(token=token)
@@ -32,10 +34,11 @@ def is_bitlink(token,url):
     response = requests.get(url, headers=headers)  
     return response.ok    
 
+
 def main():
     url = input()
     load_dotenv()
-    token = os.getenv("BIT_TOKEN")
+    token = os.getenv("TOKEN_BITLY")
 
     if is_bitlink(token,url):
         try:
@@ -49,6 +52,7 @@ def main():
             print('Битлинк', bitlink)
         except requests.exceptions.HTTPError:    
             print("Неправильно ввели адрес! Запустите программу еще раз!")    
+
 
 if __name__ == '__main__':
     main()
