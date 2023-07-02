@@ -4,8 +4,8 @@
 # Как установить
 Скрипт совместим с Phyton с библиотеками requests и python-dotenv<br/> 
 Зависимости находятся в файле "requirements.txt"<br/>
-Используйте `pip` (или `pip3`, если есть конфликт с python2) для установки зависимостей:
-```pip install -r requirements.txt```
+Используйте `pip` (или `pip3`, если есть конфликт с python2) для установки зависимостей:<br/>
+```pip install -r requirements.txt```<br/>
 Рекомендуется использовать virtualenv/venv для изоляции проекта
 
 # Цель проекта
