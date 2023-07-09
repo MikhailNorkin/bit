@@ -1,5 +1,6 @@
 import requests
 import os
+import argparse
 from dotenv import load_dotenv
 
 
@@ -36,7 +37,10 @@ def is_bitlink(token,url):
 
 
 def main():
-    url = input()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('long_link', help='Длинное имя ссылки')
+    url = parser.parse_args().long_link
+    
     load_dotenv()
     token = os.getenv("BITLY_TOKEN")
 
