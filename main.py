@@ -1,6 +1,7 @@
 import requests
 import os
 import argparse
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 
 
@@ -40,13 +41,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('long_link', help='Длинное имя ссылки')
     url = parser.parse_args().long_link
-    
+
     load_dotenv()
     token = os.getenv("BITLY_TOKEN")
 
-    if is_bitlink(token,url):
+    url_urllib = urlparse(url)
+    url_minus_https = url_urllib.netloc+url_urllib.path+url_urllib.params+url_urllib.query+url_urllib.fragment
+
+    if is_bitlink(token,url_minus_https):
         try:
-            clicks_count = count_clicks(token, url)
+            clicks_count = count_clicks(token, url_minus_https)
             print(clicks_count)
         except requests.exceptions.HTTPError:
             print("Вы неправильно ввели адрес! Запустите программу еще раз!") 
