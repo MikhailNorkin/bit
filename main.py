@@ -45,8 +45,8 @@ def main():
     load_dotenv()
     token = os.getenv("BITLY_TOKEN")
 
-    url_urllib = urlparse(url)
-    url_without_https = "{netloc}{path}".format(netloc = url_urllib.netloc, path = url_urllib.path)
+    url_parse = urlparse(url)
+    url_without_https = "{netloc}{path}".format(netloc = url_parse.netloc, path = url_parse.path)
 
     if is_bitlink(token,url_without_https):
         try:
