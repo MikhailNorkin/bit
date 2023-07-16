@@ -46,9 +46,7 @@ def main():
     token = os.getenv("BITLY_TOKEN")
 
     url_urllib = urlparse(url)
-    url_minus_https = "{netloc}{path}{params}{query}{fragment}".format(netloc = url_urllib.netloc, path = url_urllib.path,
-                                                                       params = url_urllib.params, query = url_urllib.query,
-                                                                       fragment = url_urllib.fragment)
+    url_minus_https = "{netloc}{path}".format(netloc = url_urllib.netloc, path = url_urllib.path)
 
     if is_bitlink(token,url_minus_https):
         try:
