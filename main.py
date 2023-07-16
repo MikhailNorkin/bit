@@ -46,11 +46,11 @@ def main():
     token = os.getenv("BITLY_TOKEN")
 
     url_urllib = urlparse(url)
-    url_minus_https = "{netloc}{path}".format(netloc = url_urllib.netloc, path = url_urllib.path)
+    url_without_https = "{netloc}{path}".format(netloc = url_urllib.netloc, path = url_urllib.path)
 
-    if is_bitlink(token,url_minus_https):
+    if is_bitlink(token,url_without_https):
         try:
-            clicks_count = count_clicks(token, url_minus_https)
+            clicks_count = count_clicks(token, url_without_https)
             print(clicks_count)
         except requests.exceptions.HTTPError:
             print("Вы неправильно ввели адрес! Запустите программу еще раз!") 
